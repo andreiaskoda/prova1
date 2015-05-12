@@ -38,7 +38,9 @@ public class Avaliacao1 {
     public static Complexo[] raizesEquacao(Complexo a, Complexo b, Complexo c) {
         Complexo[] vetor = new Complexo[2];
         Complexo[] raiz = new Complexo[2];        
-        Complexo delta = new Complexo(Math.pow(b.getReal(), 2) - 4*a.getReal()*c.getReal(), 0);
+        Complexo delta = new Complexo();
+        
+        delta = b.prod(b).sub(a.prod(c.prod(4)));
         
         raiz = delta.sqrt();
         
