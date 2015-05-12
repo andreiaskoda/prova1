@@ -16,30 +16,62 @@ public class Complexo {
     }
 
     public Complexo(double real, double img) {
-        // completar a implementação
+        this.real = real;
+        this.img = img;
     }
 
-    // implementar getReal()
-
-    // implementar getImg()
+    public double getReal() {
+        return this.real;
+    }
+    
+    public double getImg() {
+        return this.img;
+    }
 
     public Complexo soma(Complexo c) {
         return new Complexo(real + c.real, img + c.img);
     }
     
-    // implementar sub(Complexo)
-
-    // implementar prod(double)
-
-    // implementar prod(Complexo)
+    public Complexo sub(Complexo c) {
+        return new Complexo(real - c.real, img - c.img);
+    }
     
-    // implementar div(Complexo)
-    
-    // implementar sqrt()
+    public Complexo prod(double r) {
+        return new Complexo(real*r, img*r);
+    }
+
+    public Complexo prod(Complexo c) {
+        return new Complexo ((real*c.real - img*c.img), (real*c.img + img*c.real));
+    }
+
+    public Complexo div(Complexo c) {
+        return new Complexo((real*c.real + img*c.img)/(Math.pow(c.img, 2) + 
+                Math.pow(c.real, 2)), (c.real*img - real*c.img)/
+                (Math.pow(c.img, 2) + Math.pow(c.real, 2)));
+        
+    }
+
     public Complexo[] sqrt() {
-        // completar implementação
-        // retornar o vetor contendo as raízes
-        return null;
+        Complexo[] vetor = new Complexo[2];
+        double fi, ro;
+        
+        ro = Math.sqrt(Math.sqrt(Math.pow(real, 2) + Math.pow(img, 2)));
+        
+        if(real > 0)
+            fi = Math.atan(img/real);
+        else if(real < 0)
+            fi = Math.atan(img/real) + Math.PI;
+        else if(real == 0 && img == 0)
+            fi = 0;
+        else if(real == 0 && img > 0)
+            fi = Math.PI/2;
+        else
+            fi = 3*Math.PI/2;
+        
+        vetor[0] = new Complexo(ro*Math.cos(fi/2),ro*Math.sin(fi/2));
+        vetor[1] = new Complexo(ro*Math.cos(fi/2 + Math.PI), ro*Math.sin(fi/2 + Math.PI));
+        
+        return vetor;
     }
 
     @Override
